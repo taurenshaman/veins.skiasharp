@@ -22,6 +22,10 @@ namespace Veins.Art {
 
     string hexDigest;
     List<uint> hashes;
+    // Jerin: 2020-10:
+    // Original hashCount is 11, but there are some error while converting to int.
+    // Length of sha512 result is 128, and createHashs means 128/hashCount, so I changed hashCount from 11 to 16.
+    // The result is also OK. So I think hashCount = 16 works well.
     int hashCount = 11;
     int iter = 4;
     string resourceDir;
