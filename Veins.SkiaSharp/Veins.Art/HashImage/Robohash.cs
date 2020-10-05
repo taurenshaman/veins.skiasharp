@@ -8,6 +8,8 @@ using SkiaSharp;
 using System.IO;
 
 namespace Veins.Art {
+  // Ref: https://github.com/e1ven/Robohash
+  // License: [MIT License](https://github.com/e1ven/Robohash/blob/master/LICENSE.txt)
   public class Robohash {
     public static readonly string[] CategorySets = new string[5] { "set1", "set2", "set3", "set4", "set5" };
     public static readonly string[] ColorSets = new string[10] { "blue", "brown", "green", "grey", "orange", "pink", "purple", "red", "white", "yellow" };
