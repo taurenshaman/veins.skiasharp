@@ -36,6 +36,29 @@ namespace Veins.Controllers {
 
       return File( stream, "image/png" );
     }
+	
+	[Route( "avatar/{username}/random/geometric-bird" )]
+    public ActionResult GetGeometricBird(string username, int size = 256) {
+      //BizHelper helper = BizHelper.Initialize();
+      //var user = helper.SelectUserByUserName( username );
+      //if (user == null && string.IsNullOrEmpty( username )) {
+      //  username = "veins.design";
+      //}
+      if (string.IsNullOrEmpty( username )) {
+        username = "veins.design";
+      }
+
+      if (size < 256)
+        size = 256;
+      else if (size > 1024)
+        size = 1024;
+
+      Veins.Art.Livings.GeometricBird art = new Art.Livings.GeometricBird();
+      var stream = art.Assemble( size );
+
+      Response.Cache.SetExpires( DateTime.UtcNow );
+      return File( stream, Lib.Security.ValidationCode.ContentType );
+    }
 
 
     [Route( "avatar/{username}" )]
