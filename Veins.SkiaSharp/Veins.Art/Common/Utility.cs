@@ -10,7 +10,7 @@ namespace Veins.Art.Common {
     static Random random = new Random();
 
     /// <summary>
-    /// 根据Email获取Gravatar.com的头像URL。
+    /// get avatar URL from Gravatar.com
     /// </summary>
     /// <param name="email"></param>
     /// <returns></returns>
