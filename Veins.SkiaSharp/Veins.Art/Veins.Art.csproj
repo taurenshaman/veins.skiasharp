@@ -84,6 +84,8 @@
     <Compile Include="HashImage\Robohash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\CryptographyHelper.cs" />
+    <Compile Include="Tools\HashUtility.cs" />
+    <Compile Include="Tools\SkiaSharpUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -61,7 +61,7 @@ namespace Veins.Art {
         #3 = BG
        */
       this.iter = 4;
-      this.hashes = this.createHashs( this.hashCount );
+      this.hashes = Tools.HashUtility.CreateHashs( this.hexDigest, this.hashCount ); //this.createHashs( this.hashCount );
       this.sets = this.listDirsNames( this.resourceDir + "sets" );
       this.bgSets = this.listDirsNames( this.resourceDir + "backgrounds" );
       this.colorsInSet1 = this.listDirsNames( this.resourceDir + "sets\\set1" );
@@ -128,7 +128,7 @@ namespace Veins.Art {
 
       Stream stream = null;
       SKImage skImage = null;
-      SKPaint paint = createDefaultPaint();
+      SKPaint paint = Tools.SkiaSharpUtility.CreateDefaultPaint();
       try {
         using (var skSurface = SKSurface.Create( new SKImageInfo( ImageCanvasSize, ImageCanvasSize ) )) {
           var canvas = skSurface.Canvas;
@@ -174,7 +174,7 @@ namespace Veins.Art {
           } // scale
         }
         // encode
-        SKData skData = encodeImageToSKData( skImage, format );
+        SKData skData = Tools.SkiaSharpUtility.EncodeImageToSKData( skImage, format );
         
         stream = skData.AsStream();
       }
@@ -189,43 +189,8 @@ namespace Veins.Art {
       return stream;
     }
 
-    SKPaint createDefaultPaint() {
-      var paint = new SKPaint();
-      paint.IsAntialias = true;
-      paint.FilterQuality = SKFilterQuality.High;
-      return paint;
-    }
-
     void drawToCanvas(SKCanvas canvas, string imgPath, SKPaint paint = null) {
-      var skBitmap = SKBitmap.Decode( imgPath );
-      canvas.DrawBitmap( skBitmap, SKRect.Create( 0, 0, skBitmap.Width, skBitmap.Height ), SKRect.Create( 0, 0, ImageCanvasSize, ImageCanvasSize ), paint );
-      skBitmap.Dispose();
-    }
-
-    SKData encodeImageToSKData(SKImage skImage, string format, int quality = 90) {
-      SKEncodedImageFormat skFormat = SKEncodedImageFormat.Png;
-      switch (format) {
-        case "jpg":
-          skFormat = SKEncodedImageFormat.Jpeg;
-          break;
-        case "jpeg":
-          skFormat = SKEncodedImageFormat.Jpeg;
-          break;
-        case "gif":
-          skFormat = SKEncodedImageFormat.Gif;
-          break;
-        case "bmp":
-          skFormat = SKEncodedImageFormat.Bmp;
-          break;
-        case "webp":
-          skFormat = SKEncodedImageFormat.Webp;
-          break;
-        default:
-          skFormat = SKEncodedImageFormat.Png;
-          break;
-      }
-      SKData skData = skImage.Encode( skFormat, quality );
-      return skData;
+      Tools.SkiaSharpUtility.DrawImageToCanvas( canvas, imgPath, SKRect.Create( 0, 0, ImageCanvasSize, ImageCanvasSize ), paint );
     }
 
     /// <summary>
@@ -247,22 +212,6 @@ namespace Veins.Art {
         this.format = "png";
         this.text = lower;
       }
-    }
-
-    List<uint> createHashs(int count = 11) {
-      List<uint> hashsList = new List<uint>();
-      for (int i = 0; i < count; i++) {
-        // Get 1/numblocks of the hash
-        int blocksize = (int)( 1.0f * this.hexDigest.Length / count );
-        int currentstart = ( 1 + i ) * blocksize - blocksize;
-        //int currentend = ( 1 + i ) * blocksize;
-        // int(self.hexdigest[currentstart:currentend],16)
-        string hex = this.hexDigest.Substring( currentstart, blocksize );
-        uint hex16 = uint.Parse( hex, System.Globalization.NumberStyles.HexNumber );
-        hashsList.Add( hex16 );
-      }
-      hashsList.AddRange( hashsList );
-      return hashsList;
     }
 
     List<string> listDirsNames(string dirPath) {
