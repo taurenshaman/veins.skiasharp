@@ -154,24 +154,25 @@ namespace Veins.Art {
           }
           canvas.Flush();
 
-          // scale
-          if (size == ImageCanvasSize)
-            skImage = skSurface.Snapshot();
-          else {
-            // 先缩放；然后绘制到小图上面，即相当于Crop了
-            canvas.Scale( 1.0f * size / ImageCanvasSize );
-            var srcImage = skSurface.Snapshot();
+          //// scale
+          //if (size == ImageCanvasSize)
+          //  skImage = skSurface.Snapshot();
+          //else {
+          //  // 先缩放；然后绘制到小图上面，即相当于Crop了
+          //  canvas.Scale( 1.0f * size / ImageCanvasSize );
+          //  var srcImage = skSurface.Snapshot();
 
-            //skImage = SKImage.Create( new SKImageInfo( size, size ) );
-            //srcImage.ScalePixels( skImage.PeekPixels(), SKFilterQuality.High );
+          //  //skImage = SKImage.Create( new SKImageInfo( size, size ) );
+          //  //srcImage.ScalePixels( skImage.PeekPixels(), SKFilterQuality.High );
 
-            using (var newSurface = SKSurface.Create( new SKImageInfo( size, size ) )) {
-              newSurface.Canvas.DrawImage( srcImage, SKRect.Create( 0, 0, ImageCanvasSize, ImageCanvasSize ), SKRect.Create( 0, 0, size, size ), paint );
-              newSurface.Canvas.Flush();
-              skImage = newSurface.Snapshot();
-            }
-            
-          } // scale
+          //  using (var newSurface = SKSurface.Create( new SKImageInfo( size, size ) )) {
+          //    newSurface.Canvas.DrawImage( srcImage, SKRect.Create( 0, 0, ImageCanvasSize, ImageCanvasSize ), SKRect.Create( 0, 0, size, size ), paint );
+          //    newSurface.Canvas.Flush();
+          //    skImage = newSurface.Snapshot();
+          //  }
+
+          //} // scale
+          skImage = Tools.SkiaSharpUtility.ScaleSurfaceToImage( skSurface, ImageCanvasSize, size, paint );
         }
         // encode
         SKData skData = Tools.SkiaSharpUtility.EncodeImageToSKData( skImage, format );
