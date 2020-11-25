@@ -9,4 +9,5 @@ try: test/AvatarController.cs
 
 ### About
 * [veins.skiasharp](https://github.com/taurenshaman/veins.skiasharp) is maintained by [Veins.Design](https://veins.design/)
-* [veins.p5](https://github.com/taurenshaman/veins.p5) is Generative/Random art in JavaScript.
+* [veins.p5](https://github.com/taurenshaman/veins.p5) is about Generative/Random art, developed using JavaScript and [p5.js](https://github.com/processing/p5.js).
+* Thanks to [SkiaSharp](https://github.com/mono/SkiaSharp)
