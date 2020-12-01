@@ -23,6 +23,22 @@ namespace Veins.Art.Tools {
       return random.Next( min, max );
     }
 
+    public static float CreateRandom(float min, float max) {
+      if (min > max) {
+        float tmp = min;
+        min = max;
+        max = tmp;
+      }
+      float diff = max - min;
+      if (diff <= double.Epsilon)
+        return min;
+
+      double r = random.NextDouble();
+      double v = min + diff * r;
+
+      return (float)v;
+    }
+
     public static double CreateRandom(double min, double max) {
       if (min > max) {
         double tmp = min;

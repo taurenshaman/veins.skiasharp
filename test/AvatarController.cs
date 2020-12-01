@@ -60,6 +60,29 @@ namespace Veins.Controllers {
       return File( stream, Lib.Security.ValidationCode.ContentType );
     }
 
+    [Route( "avatar/{username}/random/butterfly" )]
+    public ActionResult GetAaronPenneButterfly(string username, int size = 256) {
+      BizHelper helper = BizHelper.Initialize();
+      //var user = helper.SelectUserByUserName( username );
+      //if (user == null && string.IsNullOrEmpty( username )) {
+      //  username = "veins.design";
+      //}
+      if (string.IsNullOrEmpty( username )) {
+        username = "veins.design";
+      }
+
+      if (size < 256)
+        size = 256;
+      else if (size > 1024)
+        size = 1024;
+
+      Veins.Art.Livings.AaronPenneButterfly art = new Art.Livings.AaronPenneButterfly( size, size );
+      var stream = art.Assemble();
+
+      Response.Cache.SetExpires( DateTime.UtcNow );
+      return File( stream, Lib.Security.ValidationCode.ContentType );
+    }
+
 
     [Route( "avatar/{username}" )]
     public ActionResult GetAvatarOfUser(string username, int size = 256) {

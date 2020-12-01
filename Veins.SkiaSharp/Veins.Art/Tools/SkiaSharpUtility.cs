@@ -113,6 +113,56 @@ namespace Veins.Art.Tools {
       canvas.DrawPath( path, paint );
     }
 
+    public static void DrawSimplePath(SKCanvas canvas, SKPaint paint, List<SKPoint> points, bool closePath, SKPathFillType pathFillType) {
+      if (points == null || points.Count == 0)// < 4
+        return;
+
+      var path = new SKPath() { FillType = pathFillType };
+      bool start = true;
+      for (int i = 0; i < points.Count; i++) {
+        if (start) {
+          path.MoveTo( points[i] );
+          start = false;
+        }
+        else
+          path.LineTo( points[i] );
+      }
+
+      if (closePath)
+        path.Close();
+
+      canvas.DrawPath( path, paint );
+    }
+
+    public static void DrawSplineCurve(SKCanvas canvas, SKPaint paint, List<SKPoint> points, bool closePath, SKPathFillType pathFillType) {
+      if (points == null || points.Count == 0)// < 4
+        return;
+
+      var path = new SKPath() { FillType = pathFillType };
+      //for (int i = 0; i < points.Count; i++) {
+      //  Common.SplineUtility.CreateSpline( path, points[i] );
+      //}
+      Common.SplineUtility.CreateSpline( path, points.ToArray() );
+
+      if (closePath)
+        path.Close();
+
+      canvas.DrawPath( path, paint );
+    }
+
+    //public static void DrawPoint(SKCanvas canvas, SKPaint paint, SKPoint point, float raidus) {
+    //  canvas.DrawCircle( point, raidus, paint );
+    //}
+
+    public static void DrawPoints(SKCanvas canvas, SKPaint paint, List<SKPoint> points) {
+      if (points == null || points.Count == 0)// < 4
+        return;
+
+      for (int i = 0; i < points.Count; i++) {
+        canvas.DrawPoint( points[i], paint );
+      }
+    }
+
     public static SKColor CreateRGBColor(byte red, byte green, byte blue) {
       SKColor color = new SKColor(red, green, blue);
       return color;

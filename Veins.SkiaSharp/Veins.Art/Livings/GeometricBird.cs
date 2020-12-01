@@ -138,6 +138,8 @@ namespace Veins.Art.Livings {
     }
 
     void draw_bird_legs(SKCanvas canvas, float x, float y) {
+      //stroke(0)
+      //strokeCap( ROUND )
       paint.StrokeCap = SKStrokeCap.Round;
       paint.Color = SkiaSharpUtility.CreateRGBColor( 0, 0, 0 );
 
@@ -147,6 +149,7 @@ namespace Veins.Art.Livings {
     }
 
     SKPoint draw_bird_body(SKCanvas canvas, float x, float y, SKColor pc, SKColor bc, SKColor dc) {
+      // stroke(*dc)
       float body_bottom = y - feet_length / 2.0f;
 
       SKPoint body_one = new SKPoint( x - feet_length * 2.0f, body_bottom );
@@ -162,6 +165,8 @@ namespace Veins.Art.Livings {
       //SKPoint true_midpoint = new SKPoint( ( left_midpoint.X + right_midpoint.X ) / 2, ( left_midpoint.Y + right_midpoint.Y ) / 2 );
 
       List<SKPoint> body_points = new List<SKPoint>() { body_one, body_three, body_four, left_midpoint, top_midpoint, bottom_midpoint };
+      //fill( *bc )
+      //beginShape()
 
       var pathBody = new SKPath { FillType = SKPathFillType.EvenOdd };
       pathBody.MoveTo( body_one );
@@ -172,6 +177,7 @@ namespace Veins.Art.Livings {
 
       SkiaSharpUtility.PathStroke( canvas, paint, dc, pathBody );
       SkiaSharpUtility.PathFill( canvas, paint, bc, pathBody );
+      //endShape(CLOSE)
 
       int range = RandomUtility.CreateRandom( 1, 4 );
       for(int i = 0; i < range; i++) {
@@ -180,6 +186,8 @@ namespace Veins.Art.Livings {
         var point_three = RandomUtility.GetRandomElement( body_points );
         //var point_four = RandomUtility.GetRandomElement( body_points );
 
+        // fill(pc[0], pc[1], pc[2])
+        //beginShape()
         var path = new SKPath { FillType = SKPathFillType.EvenOdd };
         path.MoveTo( point_one );
         path.LineTo( point_two );
@@ -188,6 +196,7 @@ namespace Veins.Art.Livings {
 
         SkiaSharpUtility.PathStroke( canvas, paint, dc, path );
         SkiaSharpUtility.PathFill( canvas, paint, pc, path );
+        //endShape(CLOSE)
 
         if (RandomUtility.CreateRandom() < 0.5) {
           draw_lines( canvas, body_points, dc );
@@ -201,13 +210,15 @@ namespace Veins.Art.Livings {
 
     void draw_bird_tail(SKCanvas canvas, SKPoint body_one, SKColor pc, SKColor dc) {
       if (RandomUtility.CreateRandom() < tail_chance) {
+        //stroke(*dc)
+        //fill( *pc )
         int var_width = RandomUtility.CreateRandom( 15, 30 );
         int var_x = RandomUtility.CreateRandom( -25, -15 );
         int var_y = RandomUtility.CreateRandom( -50, -30 );
         if (RandomUtility.CreateRandom() < 0.3) {
           var_y *= -1;
         }
-
+        //beginShape()
         var path = new SKPath { FillType = SKPathFillType.EvenOdd };
         path.MoveTo( body_one.X, body_one.Y );
         path.LineTo( body_one.X + var_width, body_one.Y );
@@ -217,6 +228,7 @@ namespace Veins.Art.Livings {
 
         SkiaSharpUtility.PathStroke( canvas, paint, dc, path );
         SkiaSharpUtility.PathFill( canvas, paint, pc, path );
+        //endShape(CLOSE)
       }
     }
 
