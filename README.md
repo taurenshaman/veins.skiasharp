@@ -2,6 +2,7 @@
 
 ### Original source (Python):
 * [HashImage/Robohash](https://github.com/e1ven/Robohash)
+* [Livings/AaronPenneButterfly](https://github.com/aaronpenne/generative_art/blob/master/butterflies)
 * [Livings/GeometricBird](https://github.com/erdavids/Birds-of-a-Feather)
 
 ### Demo Code
