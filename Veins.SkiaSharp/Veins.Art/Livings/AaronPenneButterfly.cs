@@ -137,6 +137,7 @@ namespace Veins.Art.Livings {
       var lastPalette = DrawLowerWings( canvas, palette, lines, range_lower_angles );
 
       var lastUpperAngle = range_upper_angles[range_upper_angles.Count - 1];
+      lastPalette = RandomUtility.GetRandomElement<SKColor>( palette );
       DrawAntennaeAndBody( canvas, lastUpperAngle, lastPalette );
     }
 
@@ -390,8 +391,6 @@ namespace Veins.Art.Livings {
       //ProcessingSkiaSharp.fill( paint, SKColor.FromHsv( 0, 0, 100 ) ); 
       ProcessingSkiaSharp.strokeAndFill( paint, new SKColor( 255, 255, 255, 255 ) );
       draw_16_points( canvas, body );
-      // test orgin point
-      //canvas.DrawCircle( new SKPoint( 0, 0 ), 5, paint ); // OK
 
       // Antennae
       paint.BlendMode = SKBlendMode.Multiply;
@@ -407,6 +406,7 @@ namespace Veins.Art.Livings {
         var pt = circle_points( x, y, r, (float)radians );
         antennae.Add( pt );
       }
+      //antennae.Add( antennae[0] );
 
       List<float> curve_tightness = new List<float>();
       foreach(var a in antennae) {
@@ -442,14 +442,14 @@ namespace Veins.Art.Livings {
     void drawAntennae(SKCanvas canvas, List<SKPoint> body, List<SKPoint> antennae) {
       List<SKPoint> points = new List<SKPoint>();
       points.Add( body[2] );
-      points.Add( body[2] );
+      //points.Add( body[2] );
       for (int i = 0; i < antennae.Count; i++) {
         var a = antennae[i];
         //curveTightness(curve_tightness[i])
         //curveVertex(x, y)
         points.Add( a );
       }
-      SkiaSharpUtility.DrawSplineCurve( canvas, paint, points, false, SKPathFillType.Winding );
+      SkiaSharpUtility.DrawSplineCurve( canvas, paint, points, false, SKPathFillType.EvenOdd );
       
     }
 

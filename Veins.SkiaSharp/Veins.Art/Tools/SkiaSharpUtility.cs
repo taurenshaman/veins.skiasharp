@@ -139,9 +139,7 @@ namespace Veins.Art.Tools {
         return;
 
       var path = new SKPath() { FillType = pathFillType };
-      //for (int i = 0; i < points.Count; i++) {
-      //  Common.SplineUtility.CreateSpline( path, points[i] );
-      //}
+      path.MoveTo( points[0] );
       Common.SplineUtility.CreateSpline( path, points.ToArray() );
 
       if (closePath)

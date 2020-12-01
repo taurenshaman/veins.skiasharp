@@ -86,9 +86,34 @@ namespace Veins.Art.Common {
       SKColor.FromHsv(37, 17, 96) // cream
     };
 
+    // Jerin
+    public static readonly List<SKColor> Rainbow = new List<SKColor>() {
+      SKColors.Red, SKColors.Orange, SKColors.Yellow, SKColors.Green, SKColors.Aqua, SKColors.Blue, SKColors.Purple
+    };
+    // https://wenku.baidu.com/view/5f5bcdd233d4b14e852468d6.html
+    public static readonly List<SKColor> BlueSet = new List<SKColor>() {
+      new SKColor(0, 0, 255),
+      new SKColor(176, 224, 230),
+      new SKColor(65, 105, 225),
+      new SKColor(106, 90, 205),
+      new SKColor(135, 206, 235),
+      new SKColor(0, 255, 255),
+      new SKColor(8, 46, 84)
+    };
+    public static readonly List<SKColor> PurpleSet = new List<SKColor>() {
+      new SKColor(160, 32, 240),
+      new SKColor(138, 43, 226),
+      new SKColor(160, 102, 211),
+      new SKColor(153, 51, 250),
+      new SKColor(218, 112, 214),
+      new SKColor(221, 160, 221)
+    };
+
     public static readonly List<List<SKColor>> AaronPenneBugs = new List<List<SKColor>>() {
       BugGreenOrange, BugGreenBrown, BugRedOrange, Kbo, Zenburn,
-      BugRedBlueGreen, BugPurpleBlueBlack, AlbrechtDurer, GraysBrowns, MonarchButterfly
+      BugRedBlueGreen, BugPurpleBlueBlack, AlbrechtDurer, GraysBrowns, MonarchButterfly,
+      // Jerin
+      Rainbow, BlueSet, PurpleSet
     };
   }
 
