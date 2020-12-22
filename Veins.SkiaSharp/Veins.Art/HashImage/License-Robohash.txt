@@ -1,0 +1,6 @@
+1. github.com/e1ven/Robohash is under MIT License https://github.com/e1ven/Robohash/blob/master/LICENSE.txt
+2. The "set1" artwork (and robohash backgrounds) were created by Zikri Kader. They are available under CC-BY-3.0 or CC-BY-4.0 license.
+3. The "set2" artwork was created by Hrvoje Novakovic. They are available under CC-BY-3.0 license.
+4. The "set3" artwork was created by Julian Peter Arias. They are available under CC-BY-3.0 license.
+5. The Cats/"set4" were created by David Revoy, used under CC-BY-4.0 https://www.peppercarrot.com/en/article391/cat-avatar-generator
+6. The avatars used in "set5" were created by Pablo Stanley, for https://avataaars.com/ They are "Free for personal and commercial use. 😇"
